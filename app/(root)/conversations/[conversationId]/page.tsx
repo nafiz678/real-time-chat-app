@@ -1,9 +1,12 @@
+import ConversationContainer from '@/components/shared/conversation/ConversationContainer'
 import React from 'react'
 
 
 const ConversationId = () => {
   return (
-    <div>ConversationId</div>
+    <ConversationContainer> 
+      conversation Container with id
+    </ConversationContainer>
   )
 }
 

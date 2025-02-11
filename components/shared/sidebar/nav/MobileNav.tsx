@@ -4,18 +4,22 @@ import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { ModeToggle } from "@/components/ui/theme/theme-toggle"
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip"
+import { useConversation } from "@/hooks/useConversation"
 import { useNavigation } from "@/hooks/useNavigation"
 import { UserButton } from "@clerk/nextjs"
 import Link from "next/link"
 
-const DesktopNav = () => {
+const MobileNav = () => {
 
     const paths = useNavigation()
 
+    const { isActive } = useConversation()
+    if (isActive) return null
+
     return (
-        <Card className="hidden lg:flex lg:flex-col lg:justify-between lg:items-center lg:h-full lg:w-16 lg:px-2 lg:py-4">
-            <nav>
-                <ul className="flex flex-col items-center gap-4">{
+        <Card className="fixed bottom-4 w-[calc(100vw-32px)] flex items-center h-16 p-2 lg:hidden">
+            <nav className="w-full">
+                <ul className="flex items-center justify-evenly">{
                     paths.map((path, id) => {
                         return <li key={id} className="relative">
                             <Link href={path.href}>
@@ -35,14 +39,17 @@ const DesktopNav = () => {
                             </Link>
                         </li>
                     })
-                }</ul>
+                }
+                    <li className="">
+                        <UserButton />
+                    </li>
+                    <li className="">
+                        <ModeToggle />
+                    </li>
+                </ul>
             </nav>
-            <div className="flex flex-col items-center gap-4">
-                <ModeToggle />
-                <UserButton />
-            </div>
         </Card>
     )
 }
 
-export default DesktopNav
+export default MobileNav
