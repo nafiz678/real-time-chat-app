@@ -2,10 +2,10 @@ import ConversationFallback from '@/components/shared/conversation/ConversationF
 import React from 'react'
 
 
-const ConversationPage = () => {
+const ConversationPag = () => {
   return (
     <ConversationFallback />
   )
 }
 
-export default ConversationPage
+export default ConversationPag
