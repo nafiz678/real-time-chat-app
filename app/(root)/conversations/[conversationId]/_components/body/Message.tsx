@@ -15,7 +15,6 @@ type Props = {
 const Message = ({ content,
     createdAt,
     fromCurrentUser,
-    lastByUserm,
     lastByUser,
     senderImage,
     senderName,
@@ -41,7 +40,7 @@ const Message = ({ content,
                         "rounded-bl-none": !lastByUser && !fromCurrentUser
                     }
                 )}>
-                    {type === "text" ? <p className="text-wrap break-words whitespace-pre-wrap">
+                    {type === "text" ? <p className="text-wrap break-words whitespace-pre-wrap break-all">
                         {content}
                     </p>: null }
 
