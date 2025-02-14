@@ -18,7 +18,7 @@ type Props = {
 
 const RemoveFriendDialog = ({ conversationId, open, setOpen }: Props) => {
 
-    const {mutate: removeFriend, pending} = useMutationState(api.friends.remove)
+    const {mutate: removeFriend, pending} = useMutationState(api.friend.remove)
 
     const handleRemoveFriend = async () => {
         removeFriend({conversationId})

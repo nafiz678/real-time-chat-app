@@ -5,7 +5,7 @@ import { api } from '@/convex/_generated/api'
 import { Id } from '@/convex/_generated/dataModel'
 import { useQuery } from 'convex/react'
 import { Loader } from 'lucide-react';
-import React, { useState } from 'react'
+import React, { use, useState } from 'react'
 import Header from './_components/Header';
 import Body from './_components/body/Body';
 import ChatInput from './_components/input/ChatInput';
@@ -14,13 +14,14 @@ import DeleteGroupDialog from './_components/dialogs/DeleteGroupDialog';
 import LeaveGroupDialog from './_components/dialogs/LeaveGroupDialog';
 
 type Props = {
-  params: {
-    conversationId: Id<"conversations">;
-  }
+  // params: {
+  //   conversationId: Id<"conversations">;
+  // },
+  params: Promise<{ conversationId: Id<"conversations"> }>;
 }
 
-const ConversationPage = ({ params: { conversationId } }: Props) => {
-
+const ConversationPage = ({ params }: Props) => {
+  const { conversationId } = use(params); // Properly unwrap params
   const conversation = useQuery(api.conversation.get, { id: conversationId })
 
   const [removeFriendDialogOpen, setRemoveFriendDialogOpen] = useState(false)
