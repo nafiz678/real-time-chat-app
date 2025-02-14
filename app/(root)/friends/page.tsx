@@ -14,7 +14,7 @@ const FriendsPage = () => {
 
   return (
     <>
-      <ItemList title="Friends" action={<AddFriendDialog />}
+      <ItemList title="Friend Request" action={<AddFriendDialog />}
       >
         {requests ? requests.length === 0 ? <p className="w-full h-full flex items-center justify-center">No requests found</p> : requests.map(request=> <Request key={request.request._id} id={request.request._id} imageUrl={request.sender.imageUrl} username={request.sender.username} email={request.sender.email} />) : <Loader className="h-8 w-8 animate-spin" />}
       </ItemList>
