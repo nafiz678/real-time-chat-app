@@ -39,20 +39,20 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
     :
     conversation === null ? <p className='w-full h-full flex items-center justify-center'>Conversation not found</p>
       : <ConversationContainer>
-        <RemoveFriendDialog 
-        conversationId={conversationId}
-        open={removeFriendDialogOpen}
-        setOpen={setRemoveFriendDialogOpen}
+        <RemoveFriendDialog
+          conversationId={conversationId}
+          open={removeFriendDialogOpen}
+          setOpen={setRemoveFriendDialogOpen}
         />
-        <LeaveGroupDialog 
-        conversationId={conversationId}
-        open={leaveGroupDialogOpen}
-        setOpen={setLeaveGroupDialogOpen}
+        <LeaveGroupDialog
+          conversationId={conversationId}
+          open={leaveGroupDialogOpen}
+          setOpen={setLeaveGroupDialogOpen}
         />
-        <DeleteGroupDialog 
-        conversationId={conversationId}
-        open={deleteGroupDialogOpen}
-        setOpen={setDeleteGroupDialogOpen}
+        <DeleteGroupDialog
+          conversationId={conversationId}
+          open={deleteGroupDialogOpen}
+          setOpen={setDeleteGroupDialogOpen}
         />
         <Header imageUrl={conversation.isGroup
           ?
@@ -84,7 +84,22 @@ const ConversationPage = ({ params: { conversationId } }: Props) => {
             }
           ]}
         />
-        <Body />
+        <Body
+          members={conversation.isGroup
+            ?
+            conversation.otherMembers
+              ?
+              conversation.otherMembers
+              :
+              []
+            :
+            conversation.otherMember
+              ?
+              [conversation.otherMember]
+              :
+              []
+          }
+        />
         <ChatInput />
       </ConversationContainer>
 }
